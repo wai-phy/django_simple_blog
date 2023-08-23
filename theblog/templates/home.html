@@ -5,8 +5,11 @@
 
     <ul>
         {% for post in object_list %}
-            <li>By : <a href="{% url 'article-detail' post.id %}">{{post.title}} </a><br>
-                {{post.author.email}}<br>{{post.author.first_name}} <br>{{post.author.last_name}}<br> {{post.body}}</li>
+            <ul>
+                <li>By : <a href="{% url 'article-detail' post.id %}">{{post.title}} </a><br><a href="">{{ post.title_tag}}</a>
+                    {{post.author.email}}<br>{{post.author.first_name}} <br>{{post.author.last_name}}<br> {{post.body}}
+                </li>
+            </ul>
         {% endfor %}
     </ul>
 {% endblock  %}
