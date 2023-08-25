@@ -6,9 +6,16 @@
     <ul>
         {% for post in object_list %}
             <ul>
-                <li>By : <a href="{% url 'article-detail' post.id %}">{{post.title}} </a><a href="{% url 'update_post' post.pk %}">(Edit)</a><br><a href="">{{ post.title_tag}}</a>
-                    {{post.author.email}}<br>{{post.author.first_name}} <br>{{post.author.last_name}}<br> {{post.body}}
+                <li>By : <a href="{% url 'article-detail' post.id %}">{{post.title}}</a> - <small>{{post.post_date}}</small> 
+                    
+                    <br><a href="">{{ post.title_tag}}</a>
+                    <br>{{post.author.first_name}}<br> 
+                    <p>{{post.body}}</p>
                 </li>
+                <div>
+                    <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Edit</a>
+                    <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+                </div>
             </ul>
         {% endfor %}
     </ul>
