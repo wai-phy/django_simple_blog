@@ -3,12 +3,21 @@
 {% block content %}
     <h1>Delete Post</h1>
     <br><br>
-    <div class="form-group">
-        <form method="post">
-            {% csrf_token %}
-            <h2>Are You Sure To Delete ("{{post.title}}") ???</h2>
-            <button type="submit" class="btn btn-danger">Delete</button>
-            <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Edit</a>
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                <h2>Are You Sure To Delete ("{{post.title}}") ???</h2>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Edit</a>
+            </form>
+        </div>
+        {% else %}
+        <h3>You Are Not Allowed To Update This Post And You Know It!!</h3>
+        {% endif %}
+    {% else %}
+    <h3>You Are Not Allowed To Delete Post !!!!</h3>
+    <a href="{% url 'login' %}">Login Here To Delete Post !!</a>
+{% endif %}
 {% endblock  %}
