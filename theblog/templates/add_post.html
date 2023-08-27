@@ -15,4 +15,11 @@
             <h3>You Are Not Allowed To Add Post !!!!</h3>
             <i class="fa fa-italic" aria-hidden="true"><a href="{% url 'login' %}">Login Here To Add Post !!</a></i>
         {% endif %}
+
+        <script>
+            var name = '{{user.id}}';
+            document.getElementById('elder').value=name;
+        </script>
+
+
 {% endblock  %}
